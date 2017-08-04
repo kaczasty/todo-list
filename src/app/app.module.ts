@@ -10,8 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
 import { NavigationComponent } from './navigation/navigation.component';
 
-import { TodoListModule } from './todo-list/todo-list.module';
-
+import { TodoListModule } from './todo/todo-list/todo-list.module';
 
 @NgModule({
   declarations: [

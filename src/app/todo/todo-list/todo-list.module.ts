@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { TodoListComponent } from './todo-list.component';
 
-import {TodoListService} from './todo-list.service';
+import {TodoService} from '../todo.service';
 
 import { TodoPipe } from './todo.pipe';
 
@@ -17,6 +17,6 @@ import { TodoPipe } from './todo.pipe';
     TodoListComponent,
     TodoPipe],
   exports: [TodoListComponent],
-  providers: [TodoListService]
+  providers: [TodoService]
 })
 export class TodoListModule { }

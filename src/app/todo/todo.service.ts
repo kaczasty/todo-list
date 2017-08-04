@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class TodoListService {
+export class TodoService {
     todos: Array<{id, title, description, done}> = [
         { id: 1, title: 'Todo 1', description: 'Todo 1 description', done: false },
         { id: 2, title: 'Todo 2', description: 'Todo 2 description', done: false },

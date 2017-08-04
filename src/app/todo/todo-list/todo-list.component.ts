@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TodoListService } from './todo-list.service';
+import { TodoService } from '../todo.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +11,7 @@ export class TodoListComponent implements OnInit {
   todos: Array<{id, title, description, done}>;
   public name: string;
 
-  constructor (private todoListService: TodoListService,
+  constructor (private todoService: TodoService,
             private router: Router) {}
 
   ngOnInit() {
@@ -19,7 +19,7 @@ export class TodoListComponent implements OnInit {
   }
 
   getTodoList() {
-    this.todos = this.todoListService.getTodos();
+    this.todos = this.todoService.getTodos();
   }
 
   selectTodo(todo) {
@@ -27,17 +27,17 @@ export class TodoListComponent implements OnInit {
   }
 
   toggleTodo(todo) {
-    this.todoListService.toggleTodo(todo.id);
+    this.todoService.toggleTodo(todo.id);
     this.getTodoList();
   }
 
   deleteTodo(todo) {
-    this.todoListService.deleteTodo(todo.id);
+    this.todoService.deleteTodo(todo.id);
     this.getTodoList();
   }
 
   addTodo() {
-    this.todoListService.addTodo();
+    this.todoService.addTodo();
     this.getTodoList();
   }
 }
