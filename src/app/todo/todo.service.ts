@@ -1,13 +1,22 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+interface TodoResponse {
+  results: Array<{id, title, description, done}>;
+}
 
 @Injectable()
 export class TodoService {
-    todos: Array<{id, title, description, done}> = [
-        { id: 1, title: 'Todo 1', description: 'Todo 1 description', done: false },
-        { id: 2, title: 'Todo 2', description: 'Todo 2 description', done: false },
-        { id: 3, title: 'Todo 3', description: 'Todo 3 description', done: false },
-        { id: 4, title: 'Todo 4', description: 'Todo 4 description', done: false }
-    ];
+    private todos: Array<{id, title, description, done}>;
+    private todosUrl = 'assets/todos.json';
+
+    constructor (private http: HttpClient) {
+        this.http.get<TodoResponse>(this.todosUrl).subscribe(data => {
+            this.todos = data.results;
+        });
+    console.log('service init');
+    console.log(this.todos);
+    }
 
     getTodos (): Array<{id, title, description, done}> {
         return this.todos;
@@ -27,6 +36,13 @@ export class TodoService {
         this.todos.splice(foundIndex, 1);
     }
 
-    addTodo() {
+    addTodo(todo: {id, title, description, done}) {
+        todo.id = (Math.max.apply(Math, this.todos.map(function(o){return o.id; })) || 0) + 1;
+        this.todos.push(todo);
+    }
+
+    editTodo(todo: {id, title, description, done}) {
+        const foundIndex = this.todos.findIndex(x => x.id === todo.id);
+        this.todos[foundIndex] = todo;
     }
 }

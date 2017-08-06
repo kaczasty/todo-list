@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
+
+import { TodoComponent } from './todo.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoHomeComponent } from './todo-home/todo-home.component';
 import { TodoFormComponent } from './todo-form/todo-form.component';
@@ -9,7 +11,7 @@ import { TodoDetailsComponent } from './todo-details/todo-details.component';
 const todoRoutes: Routes = [
     {
     path: 'todo',
-    component: TodoListComponent,
+    component: TodoComponent,
     children: [
       {
         path: '',

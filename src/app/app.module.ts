@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -10,7 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
 import { NavigationComponent } from './navigation/navigation.component';
 
-import { TodoListModule } from './todo/todo-list/todo-list.module';
+import { TodoModule } from './todo/todo.module';
+import { TodoService } from './todo/todo.service';
 
 @NgModule({
   declarations: [
@@ -22,11 +23,11 @@ import { TodoListModule } from './todo/todo-list/todo-list.module';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
-    AppRoutingModule,
-    TodoListModule
+    HttpClientModule,
+    TodoModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [TodoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -16,6 +16,7 @@ export class TodoListComponent implements OnInit {
 
   ngOnInit() {
     this.getTodoList();
+    console.log('todo list init');
   }
 
   getTodoList() {
@@ -36,8 +37,7 @@ export class TodoListComponent implements OnInit {
     this.getTodoList();
   }
 
-  addTodo() {
-    this.todoService.addTodo();
-    this.getTodoList();
+  editTodo(todo) {
+    this.router.navigate([`todo/edit/${todo.id}`]);
   }
 }

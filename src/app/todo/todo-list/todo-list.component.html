@@ -1,11 +1,8 @@
-<input [(ngModel)]="name" />
-
+Filter todos: <input [(ngModel)]="name" />
 <div *ngFor="let todo of todos | todoFilter:name">
     {{todo?.title}} {{todo?.done}} 
     <button (click)="selectTodo(todo)">Details</button>
     <button (click)="toggleTodo(todo)">Toggle done</button>
+    <button (click)="editTodo(todo)">Edit</button>
     <button (click)="deleteTodo(todo)">Delete</button>
 </div>
-
-<button (click)="addTodo()">Add new to-do</button>
-<router-outlet></router-outlet>
