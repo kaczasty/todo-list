@@ -1,6 +1,6 @@
 Filter todos: <input [(ngModel)]="name" />
 <div *ngFor="let todo of todos | todoFilter:name">
-    {{todo?.title}} {{todo?.done}} 
+    <div [ngTemplateOutlet]="innerTemplate" [ngOutletContext]="{todo: todo}"></div>
     <button (click)="selectTodo(todo)">Details</button>
     <button (click)="toggleTodo(todo)">Toggle done</button>
     <button (click)="editTodo(todo)">Edit</button>

@@ -1,3 +1,7 @@
-<app-todo-list></app-todo-list>
+<app-todo-list>
+<ng-template let-todo="todo">
+    Title: {{todo?.title}} Done: {{todo?.done}} 
+</ng-template>
+</app-todo-list>
 <br>
 <router-outlet></router-outlet>

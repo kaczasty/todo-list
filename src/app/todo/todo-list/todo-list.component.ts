@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ContentChild, TemplateRef, Input } from '@angular/core';
 import { TodoService } from '../todo.service';
 import { Router } from '@angular/router';
 
@@ -10,13 +10,13 @@ import { Router } from '@angular/router';
 export class TodoListComponent implements OnInit {
   todos: Array<{id, title, description, done}>;
   public name: string;
+  @ContentChild(TemplateRef) innerTemplate: TemplateRef<any>;
 
   constructor (private todoService: TodoService,
             private router: Router) {}
 
   ngOnInit() {
     this.getTodoList();
-    console.log('todo list init');
   }
 
   getTodoList() {
@@ -29,12 +29,10 @@ export class TodoListComponent implements OnInit {
 
   toggleTodo(todo) {
     this.todoService.toggleTodo(todo.id);
-    this.getTodoList();
   }
 
   deleteTodo(todo) {
     this.todoService.deleteTodo(todo.id);
-    this.getTodoList();
   }
 
   editTodo(todo) {
