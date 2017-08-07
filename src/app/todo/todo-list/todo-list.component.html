@@ -6,3 +6,8 @@ Filter todos: <input [(ngModel)]="name" />
     <button type="button" class="btn btn-link" (click)="editTodo(todo)">Edit</button>
     <button type="button" class="btn btn-link" (click)="deleteTodo(todo)">Delete</button>
 </div>
+<div>
+    Count:<span > {{counts?.countAll}} </span> 
+    Count done:<span class='green'> {{counts?.countDone}} </span>
+    Count not done:<span class='red'> {{counts?.countNotDone}} </span>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ContentChild, TemplateRef, Input } from '@angular/core';
+import { Component, OnInit, DoCheck, ContentChild, TemplateRef, Input } from '@angular/core';
 import { TodoService } from '../todo.service';
 import { Router } from '@angular/router';
 
@@ -7,8 +7,9 @@ import { Router } from '@angular/router';
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.css']
 })
-export class TodoListComponent implements OnInit {
+export class TodoListComponent implements OnInit, DoCheck {
   todos: Array<{id, title, description, done}>;
+  counts: {countAll, countDone, countNotDone};
   public name: string;
   @ContentChild(TemplateRef) innerTemplate: TemplateRef<any>;
 
@@ -17,6 +18,15 @@ export class TodoListComponent implements OnInit {
 
   ngOnInit() {
     this.getTodoList();
+    this.getTodoCounts();
+  }
+
+  ngDoCheck() {
+    this.getTodoCounts();
+  }
+
+  getTodoCounts() {
+    this.counts = this.todoService.getCounts();
   }
 
   getTodoList() {

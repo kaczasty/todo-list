@@ -36,7 +36,7 @@ export class TodoService {
         this.todos.splice(foundIndex, 1);
     }
 
-    addTodo(todo: {id, title, description, done}) {
+    addTodo(todo: {id, title, description, done}): boolean {
         const titleIndex = this.todos.findIndex(x => x.title === todo.title);
         if (titleIndex) {
             return false;
@@ -46,7 +46,7 @@ export class TodoService {
         return true;
     }
 
-    editTodo(todo: {id, title, description, done}) {
+    editTodo(todo: {id, title, description, done}): boolean {
         const titleIndex = this.todos.findIndex(x => x.title === todo.title);
         if (titleIndex) {
             return false;
@@ -55,5 +55,20 @@ export class TodoService {
         const foundIndex = this.todos.findIndex(x => x.id === todo.id);
         this.todos[foundIndex] = todo;
         return true;
+    }
+
+    getCounts(): {countAll, countDone, countNotDone} {
+        let countAll = 0, countDone = 0, countNotDone = 0;
+        for (let i = 0; i < this.todos.length; i++) {
+            if (this.todos[i].done) {
+                countDone++;
+            } else {
+                countNotDone++;
+            }
+
+            countAll++;
+        }
+        console.log(countAll);
+        return {countAll: countAll, countDone: countDone, countNotDone: countNotDone};
     }
 }
