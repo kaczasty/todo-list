@@ -1,8 +1,8 @@
 Filter todos: <input [(ngModel)]="name" />
 <div *ngFor="let todo of todos | todoFilter:name">
     <div [ngTemplateOutlet]="innerTemplate" [ngOutletContext]="{todo: todo}"></div>
-    <button (click)="selectTodo(todo)">Details</button>
-    <button (click)="toggleTodo(todo)">Toggle done</button>
-    <button (click)="editTodo(todo)">Edit</button>
-    <button (click)="deleteTodo(todo)">Delete</button>
+    <button type="button" class="btn btn-link" (click)="selectTodo(todo)">Details</button>
+    <button type="button" class="btn btn-link" (click)="toggleTodo(todo)">Toggle done</button>
+    <button type="button" class="btn btn-link" (click)="editTodo(todo)">Edit</button>
+    <button type="button" class="btn btn-link" (click)="deleteTodo(todo)">Delete</button>
 </div>

@@ -37,12 +37,23 @@ export class TodoService {
     }
 
     addTodo(todo: {id, title, description, done}) {
+        const titleIndex = this.todos.findIndex(x => x.title === todo.title);
+        if (titleIndex) {
+            return false;
+        }
         todo.id = (Math.max.apply(Math, this.todos.map(function(o){return o.id; })) || 0) + 1;
         this.todos.push(todo);
+        return true;
     }
 
     editTodo(todo: {id, title, description, done}) {
+        const titleIndex = this.todos.findIndex(x => x.title === todo.title);
+        if (titleIndex) {
+            return false;
+        }
+
         const foundIndex = this.todos.findIndex(x => x.id === todo.id);
         this.todos[foundIndex] = todo;
+        return true;
     }
 }

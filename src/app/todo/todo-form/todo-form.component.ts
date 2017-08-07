@@ -29,13 +29,18 @@ export class TodoFormComponent implements OnInit {
   }
 
   onSubmit() {
+    let success = false;
     if (this.editMode) {
-      this.todoService.editTodo(this.model);
+      success = this.todoService.editTodo(this.model);
     } else {
-      this.todoService.addTodo(this.model);
+      success = this.todoService.addTodo(this.model);
     }
 
-    this.goHome();
+    if (success) {
+      this.goHome();
+    } else {
+      window.alert('Title already exists!');
+    }
   }
 
   goHome () {
